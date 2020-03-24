@@ -1,4 +1,4 @@
-##Ngrok
+﻿##Ngrok
 
 - Download ngrok at https://ngrok.com/download
 - Type ./ngrok http 3000
@@ -23,3 +23,6 @@
 - Create your app
 - Save accessToken
 - Add bonjour
+
+
+24/03/20202 : Préparation soutenance 
