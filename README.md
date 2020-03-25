@@ -1,4 +1,11 @@
-﻿##Ngrok
+﻿
+#Compte rendu [CR]
+
+- 23/03/20202 : Mise en place Bot 
+- 24/03/20202 : Préparation soutenance 
+- 25/03/20202 : Préparation PPTX 
+
+##Ngrok
 
 - Download ngrok at https://ngrok.com/download
 - Type ./ngrok http 3000
@@ -23,6 +30,3 @@
 - Create your app
 - Save accessToken
 - Add bonjour
-
-
-24/03/20202 : Préparation soutenance 
