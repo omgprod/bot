@@ -4,13 +4,26 @@ const fetch = require('node-fetch');
 const app = express();
 
 const dialogFlowAccessToken = '103553404623466';
-const facebookAccessToken = 'EAADPZB26NL4ABAGInmtN6j73VdLZBcZAhtqFNfqlXZA0LtgoSf3v798YqXZAvEBGYMJgb4hZAEgY9pExj0zrTGfgCcJFEgUMMhIRrOWD2tEDj90N0uFINZBZCJP9YqUzJ7YwYbg5uGTsB6w74YfydFjiOgyVCWryHY6ZBFaAwJC3wWAZDZD';
+const facebookAccessToken = 'EAADPZB26NL4ABAPZBIv5cOFjrc9EF6kdkGfrmzZCqWNlrPvFZAJTLBf5FXgHLG9PT6A8Mj1meUsQRlSG0JxF4DsADFgeiWtV2ZAnu8YlcZAXFzsZCyHRLUh6TircP1weYIe534R7daPiIAZBx1IkxS3Nw0q5kZBB6FBRHTp6WhBR6xAZDZD';
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get('/webhook', (req, res) => {
-    if (req.query['hub.challenge']) res.send(req.query['hub.challenge']);
+    let VERIFY_TOKEN = "EAADPZB26NL4ABAPZBIv5cOFjrc9EF6kdkGfrmzZCqWNlrPvFZAJTLBf5FXgHLG9PT6A8Mj1meUsQRlSG0JxF4DsADFgeiWtV2ZAnu8YlcZAXFzsZCyHRLUh6TircP1weYIe534R7daPiIAZBx1IkxS3Nw0q5kZBB6FBRHTp6WhBR6xAZDZD"
+    let mode = req.query['hub.mode'];
+    let token = req.query['hub.verify_token'];
+    let challenge = req.query['hub.challenge'];
+    if (mode && token) {
+        if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+            console.log('WEBHOOK_VERIFIED');
+            res.status(200).send(challenge);
+
+        } else {
+            res.sendStatus(403);
+        }
+    }
+    //if (req.query['hub.challenge']) res.send(req.query['hub.challenge']);
 });
 
 app.post('/webhook', (req, res) => {
@@ -18,12 +31,6 @@ app.post('/webhook', (req, res) => {
         req.body.entry.forEach((entry) => {
 
             let webhook_event = entry.messaging[0];
-
-            /*
-
-            DialogFlow 
-
-            */
             fetch('https://api.dialogflow.com/v1/query?v=20170712', {
                 method: 'POST',
                 headers: {
