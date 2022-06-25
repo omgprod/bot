@@ -14,6 +14,6 @@
     "bootbot": "^1.0.16",
     "express": "^4.16.2",
     "messenger-bot": "^2.5.0",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^2.6.7"
   }
 }
